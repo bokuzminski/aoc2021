@@ -48,13 +48,11 @@ func partTwo() {
 		lines = append(lines, scanner.Text())
 	}
 
-	for i := 0; i < len(lines)-3; i++ {
+	for i := 3; i < len(lines); i++ {
 		a, _ := strconv.Atoi(lines[i])
-		b, _ := strconv.Atoi(lines[i+1])
-		c, _ := strconv.Atoi(lines[i+2])
-		d, _ := strconv.Atoi(lines[i+3])
+		b, _ := strconv.Atoi(lines[i-3])
 
-		if (a + b + c) < (b + c + d) {
+		if a > b {
 			result++
 		}
 	}
