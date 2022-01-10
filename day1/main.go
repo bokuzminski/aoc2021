@@ -1,26 +1,18 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/bokuzminski/aoc2021/helpers"
 )
 
 func partOne() {
-	file, _ := os.Open("input.txt")
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	scanner.Scan()
-
-	prevDepth, _ := strconv.Atoi(scanner.Text())
-
+	lines, _ := helpers.ReadDataToInt("input.txt")
 	var result = 0
+	prevDepth := lines[0]
 
-	for scanner.Scan() {
-		currentDepth, _ := strconv.Atoi(scanner.Text())
+	for _, val := range lines {
+		currentDepth := val
 		if currentDepth > prevDepth {
 			result++
 		}
@@ -36,22 +28,12 @@ func main() {
 }
 
 func partTwo() {
-	file, _ := os.Open("input.txt")
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	var lines []string
-
+	lines, _ := helpers.ReadDataToInt("input.txt")
 	var result = 0
 
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-
 	for i := 3; i < len(lines); i++ {
-		a, _ := strconv.Atoi(lines[i])
-		b, _ := strconv.Atoi(lines[i-3])
-
+		a := lines[i]
+		b := lines[i-3]
 		if a > b {
 			result++
 		}
