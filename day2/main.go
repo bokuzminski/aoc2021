@@ -2,26 +2,27 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"os"
-	"strings"
+
+	"github.com/bokuzminski/aoc2021/helpers"
 )
 
 func main() {
-	file, _ := os.Open("input.txt")
-	defer file.Close()
-	fileContent, _ := ioutil.ReadFile("input.txt")
-	depth := 0
-	horizontal := 0
-	aim := 0
+	partOne()
+	partTwo()
 
-	split := strings.Split(string(fileContent), "\n")
-	for _, i := range split {
+}
+
+func partOne() {
+	lines, _ := helpers.ReadDataToString("input.txt")
+	var horizontal, depth, aim int
+
+	for _, val := range lines {
 		var (
 			operation string
 			value     int
 		)
-		fmt.Sscanf(string(i), "%s %d", &operation, &value)
+		fmt.Sscanf(val, "%s %d", &operation, &value)
+
 		switch operation {
 		case "forward":
 			horizontal += value
@@ -34,26 +35,21 @@ func main() {
 			depth += value
 		}
 	}
-	fmt.Println("Part 1 answer : ", depth*horizontal)
-	partTwo()
 
+	fmt.Println("Part 1 answer : ", depth*horizontal)
 }
 
 func partTwo() {
-	file, _ := os.Open("input.txt")
-	defer file.Close()
-	fileContent, _ := ioutil.ReadFile("input.txt")
-	depth := 0
-	horizontal := 0
-	aim := 0
+	lines, _ := helpers.ReadDataToString("input.txt")
+	var horizontal, depth, aim int
 
-	split := strings.Split(string(fileContent), "\n")
-	for _, i := range split {
+	for _, i := range lines {
 		var (
 			operation string
 			value     int
 		)
-		fmt.Sscanf(string(i), "%s %d", &operation, &value)
+		fmt.Sscanf(i, "%s %d", &operation, &value)
+
 		switch operation {
 		case "forward":
 			horizontal += value
